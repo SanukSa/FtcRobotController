@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.pedropathing.util.Timer;
 
-import org.firstinspires.ftc.teamcode.mechanisms.flyWheelMotor;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 @Autonomous
@@ -20,7 +19,6 @@ public class rightAutoPath extends OpMode {
     private Follower follower;
     private Timer pathTimer, opModeTimer;
 
-    flyWheelMotor shootMotor = new flyWheelMotor();
 
     public enum PathState{
         // Start to Shoot POS
@@ -117,11 +115,9 @@ public class rightAutoPath extends OpMode {
                 if (!follower.isBusy()) {          // Only start counting after the bot reaches shoot pose
                     if (pathTimer.getElapsedTime() < 5000) {
                         // Stay here, do nothing
-                        shootMotor.setMotorSpeed(1);
                         telemetry.addLine("Waiting at Shoot Pos...");
                     } else {
                         // 5 seconds passed → go to next path
-                        shootMotor.setMotorSpeed(0);
                         follower.followPath(driveShootToCollect1Pose, true);
                         setPathState(PathState.DRIVE_SHOOT_TO_COLLECT1_POSE);
                     }
@@ -139,10 +135,8 @@ public class rightAutoPath extends OpMode {
             case DRIVE_COLLECT1_TO_SHOOT_POSE:
                 if (!follower.isBusy()) {
                     if (pathTimer.getElapsedTime() < 5000) {
-                        shootMotor.setMotorSpeed(1);
                         telemetry.addLine("Waiting at Shoot Pos after Collect 1...");
                     } else {
-                        shootMotor.setMotorSpeed(0);
                         telemetry.addLine("Going to Collect 2");
                         follower.followPath(driveShootToCollect2Pose, true);
                         setPathState(PathState.DRIVE_SHOOT_TO_COLLECT2_POSE);
@@ -162,10 +156,8 @@ public class rightAutoPath extends OpMode {
             case DRIVE_COLLECT2_TO_SHOOT_POSE:
                 if (!follower.isBusy()) {
                     if (pathTimer.getElapsedTime() < 5000) {
-                        shootMotor.setMotorSpeed(1);
                         telemetry.addLine("Waiting at Shoot Pos after Collect 2...");
                     } else {
-                        shootMotor.setMotorSpeed(0);
                         telemetry.addLine("Going to Collect 3");
                         follower.followPath(driveShootToCollect3Pose, true);
                         setPathState(PathState.DRIVE_SHOOT_TO_COLLECT3_POSE);
@@ -185,9 +177,7 @@ public class rightAutoPath extends OpMode {
                 if (!follower.isBusy()) {
                     if (pathTimer.getElapsedTime() < 5000) {
                         telemetry.addLine("Waiting at Shoot Pos after Collect 3...");
-                        shootMotor.setMotorSpeed(1);
                     } else {
-                        shootMotor.setMotorSpeed(0);
                         telemetry.addLine("Going to End Pose");
                         follower.followPath(driveShootToEndPose, true);
                         setPathState(PathState.DRIVE_SHOOT_TO_END_POSE);
@@ -219,7 +209,6 @@ public class rightAutoPath extends OpMode {
         follower = Constants.createFollower(hardwareMap);
         buildPaths();
         follower.setPose(startPose);
-        shootMotor.init(hardwareMap);
     }
 
     public void start(){
