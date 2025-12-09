@@ -29,7 +29,7 @@ public class leftAutoPath extends OpMode {
         DRIVE_COLLECT1_TO_SHOOT_POSE,
         DRIVE_SHOOT_TO_COLLECT2_POSE,
         DRIVE_COLLECT2_TO_SHOOT_POSE,
-            DRIVE_SHOOT_TO_COLLECT3_POSE,
+        DRIVE_SHOOT_TO_COLLECT3_POSE,
         DRIVE_COLLECT3_TO_SHOOT_POSE,
         DRIVE_SHOOT_TO_END_POSE
 
@@ -56,7 +56,7 @@ public class leftAutoPath extends OpMode {
         driveShootToCollect1Pose = follower.pathBuilder()
                 .addPath(new BezierCurve(
                 shootPose,
-                new Pose(80.19512195121952, 80.97560975609755,0),
+                new Pose(101.56795608762755, 83.3568613835777,0),
                 collect1Pose
                 ))
                 .setLinearHeadingInterpolation(shootPose.getHeading(), collect1Pose.getHeading())
@@ -71,7 +71,7 @@ public class leftAutoPath extends OpMode {
         driveShootToCollect2Pose = follower.pathBuilder()
                 .addPath(new BezierCurve(
                         shootPose,
-                        new Pose(90.53658536585365, 59.12195121951219, 0),
+                        new Pose(115.33357650976022, 58.24390520806538, 0),
                         collect2Pose
                 ))
                 .setLinearHeadingInterpolation(shootPose.getHeading(), collect2Pose.getHeading())
@@ -85,7 +85,7 @@ public class leftAutoPath extends OpMode {
         driveShootToCollect3Pose = follower.pathBuilder()
                 .addPath(new BezierCurve(
                         shootPose,
-                        new Pose(103.41463414634147, 31.024390243902438),
+                        new Pose(130.2153283174712, 33.13094903255307),
                         collect3Pose
                 ))
                 .setLinearHeadingInterpolation(shootPose.getHeading(), collect3Pose.getHeading())
