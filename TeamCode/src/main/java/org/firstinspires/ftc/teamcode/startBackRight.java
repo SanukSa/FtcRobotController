@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
@@ -18,6 +20,9 @@ public class startBackRight extends OpMode {
     private Timer pathTimer, opModeTimer;
     private shootMotorInit shootMotor;
 
+    private TelemetryManager panelsTelemetry;
+
+
     /** This enum follows the logic of your second snippet but tailored to your specific pathing steps */
     public enum PathState {
         DRIVE_START_TO_SHOOT,
@@ -31,7 +36,7 @@ public class startBackRight extends OpMode {
     PathState pathState;
 
     // --- Coordinates from your first snippet ---
-    private final Pose startPose = new Pose(91.31707317073169, 8.195121951219509, Math.toRadians(90));
+    private final Pose startPose = new Pose(95.41463414634146, 8.780487804878057, Math.toRadians(90));
     private final Pose shootPose = new Pose(80.19512195121952, 18.34146341463415, Math.toRadians(65));
     private final Pose collect1PrePose = new Pose(97.8475181356998, 34.991168008516965, Math.toRadians(0));
     private final Pose collect1Pose = new Pose(125.00671518477236, 35.7352555989025, Math.toRadians(0));
@@ -131,6 +136,9 @@ public class startBackRight extends OpMode {
 
         shootMotor = new shootMotorInit();
         shootMotor.init(hardwareMap);
+        panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+        panelsTelemetry.update(telemetry);
+
 
         buildPaths();
         pathState = PathState.DRIVE_START_TO_SHOOT;
@@ -152,5 +160,11 @@ public class startBackRight extends OpMode {
         telemetry.addData("Y", follower.getPose().getY());
         telemetry.addData("Path Time", pathTimer.getElapsedTime());
         telemetry.update();
+
+        panelsTelemetry.debug("Path State", pathState);
+        panelsTelemetry.debug("X", follower.getPose().getX());
+        panelsTelemetry.debug("Y", follower.getPose().getY());
+        panelsTelemetry.debug("Heading", follower.getPose().getHeading());
+        panelsTelemetry.update(telemetry);
     }
 }
