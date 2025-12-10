@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierCurve;
 import com.pedropathing.geometry.BezierLine;
@@ -18,6 +20,8 @@ public class rightAutoPath extends OpMode {
     private Follower follower;
     private Timer pathTimer, opModeTimer;
     private shootMotorInit shootMotor;
+
+    private TelemetryManager panelsTelemetry;
 
     public enum PathState{
         DRIVE_START_TO_SHOOT_POS,
@@ -137,8 +141,8 @@ public class rightAutoPath extends OpMode {
                 break;
 
             case WAIT_AT_COLLECT1:
-                // Wait 300ms to fix angle and stop momentum
-                if(pathTimer.getElapsedTime() > 300) {
+                // Wait 100ms to fix angle and stop momentum
+                if(pathTimer.getElapsedTime() > 100) {
                     telemetry.addLine("Going to Shoot from Collect 1");
                     follower.followPath(driveCollect1ToShootPose, true);
                     setPathState(PathState.DRIVE_COLLECT1_TO_SHOOT_POSE);
@@ -167,8 +171,8 @@ public class rightAutoPath extends OpMode {
                 break;
 
             case WAIT_AT_COLLECT2:
-                // Wait 300ms to fix angle and stop momentum
-                if(pathTimer.getElapsedTime() > 300) {
+                // Wait 100ms to fix angle and stop momentum
+                if(pathTimer.getElapsedTime() > 100) {
                     telemetry.addLine("Going to Shoot from Collect 2");
                     follower.followPath(driveCollect2ToShootPose, true);
                     setPathState(PathState.DRIVE_COLLECT2_TO_SHOOT_POSE);
@@ -197,8 +201,8 @@ public class rightAutoPath extends OpMode {
                 break;
 
             case WAIT_AT_COLLECT3:
-                // Wait 300ms to fix angle and stop momentum
-                if(pathTimer.getElapsedTime() > 300) {
+                // Wait 100ms to fix angle and stop momentum
+                if(pathTimer.getElapsedTime() > 100) {
                     telemetry.addLine("Going to Shoot from Collect 3");
                     follower.followPath(driveCollect3ToShootPose, true);
                     setPathState(PathState.DRIVE_COLLECT3_TO_SHOOT_POSE);
@@ -238,6 +242,7 @@ public class rightAutoPath extends OpMode {
 
     @Override
     public void init() {
+        panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
         pathState = PathState.DRIVE_START_TO_SHOOT_POS;
         pathTimer = new Timer();
         opModeTimer = new Timer();
@@ -246,6 +251,9 @@ public class rightAutoPath extends OpMode {
         shootMotor.init(hardwareMap);
         buildPaths();
         follower.setPose(startPose);
+
+        panelsTelemetry.debug("Status", "Initialized");
+        panelsTelemetry.update(telemetry);
     }
 
     public void start(){
@@ -265,5 +273,11 @@ public class rightAutoPath extends OpMode {
         telemetry.addData("Path Time", pathTimer.getElapsedTime());
         telemetry.addData("Motor RPM", shootMotor.getMotorRevs());
         telemetry.update();
+
+        panelsTelemetry.debug("Path State", pathState);
+        panelsTelemetry.debug("X", follower.getPose().getX());
+        panelsTelemetry.debug("Y", follower.getPose().getY());
+        panelsTelemetry.debug("Heading", follower.getPose().getHeading());
+        panelsTelemetry.update(telemetry);
     }
 }
