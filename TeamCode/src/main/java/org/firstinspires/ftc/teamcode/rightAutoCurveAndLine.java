@@ -44,16 +44,16 @@ public class rightAutoCurveAndLine extends OpMode {
     PathState pathState;
 
     // Coordinates
-    private final Pose startPose = new Pose(124.68292682926829, 124.29268292682926, Math.toRadians(35));
+    private final Pose startPose = new Pose(124.68292682926829, 124.29268292682926, Math.toRadians(43));
     private final Pose shootPose = new Pose(114.92682926829269, 114.73170731707317, Math.toRadians(45));
 
     // UPDATED: Headings set to 0 (Perpendicular)
     private final Pose collect1Pre = new Pose(103.8048780487805, 83.51219512195122, Math.toRadians(0));
-    private final Pose collect1Pose = new Pose(124.48780487804879, 83.51219512195122, Math.toRadians(0));
-    private final Pose collect2Pre = new Pose(95.21951219512195, 59.512195121951216, Math.toRadians(0));
-    private final Pose collect2Pose = new Pose(124.87804878048782, 59.512195121951216, Math.toRadians(0));
-    private final Pose collect3Pre = new Pose(83.1219512195122, 35.51219512195122, Math.toRadians(0));
-    private final Pose collect3Pose = new Pose(125.07317073170732, 35.3170731707317, Math.toRadians(0));
+    private final Pose collect1Pose = new Pose(128.7271531367001, 83.51219512195122, Math.toRadians(0));
+    private final Pose collect2Pre = new Pose(95.21951219512195, 74.512195121951216, Math.toRadians(0));
+    private final Pose collect2Pose = new Pose(128.7271531367001, 74.512195121951216, Math.toRadians(0));
+    private final Pose collect3Pre = new Pose(83.1219512195122, 45.51219512195122, Math.toRadians(0));
+    private final Pose collect3Pose = new Pose(129.28521882948928, 45.3170731707317, Math.toRadians(0));
 
     private final Pose endPose = new Pose(91.90243902439024, 120.1951219512195, Math.toRadians(44));
 

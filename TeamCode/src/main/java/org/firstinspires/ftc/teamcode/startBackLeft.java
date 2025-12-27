@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.mechanisms.shootMotorInit;
 
 @Autonomous
-public class startBackRight extends OpMode {
+public class startBackLeft extends OpMode {
 
     private Follower follower;
     private Timer pathTimer, opModeTimer;
@@ -36,10 +36,11 @@ public class startBackRight extends OpMode {
     PathState pathState;
 
     // --- Coordinates from your first snippet ---
-    private final Pose startPose = new Pose(95.41463414634146, 8.780487804878057, Math.toRadians(90));
-    private final Pose shootPose = new Pose(80.19512195121952, 18.34146341463415, Math.toRadians(65));
-    private final Pose collect1PrePose = new Pose(97.8475181356998, 39.991168008516965, Math.toRadians(0));
-    private final Pose collect1Pose = new Pose(125.00671518477236, 39.991168008516965, Math.toRadians(0));
+    private final Pose startPose = new Pose(49.75609756097562, 8.195121951219509, Math.toRadians(90));
+    private final Pose shootPose = new Pose(63.8048780488, 18.34146341463415, Math.toRadians(115));
+    private final Pose collect1PrePose = new Pose(47.80487804878048, 36.09756097560975, Math.toRadians(180));
+    private final Pose collect1Pose = new Pose(14.439024390243903, 36.09756097560975, Math.toRadians(180));
+
 
     private PathChain driveStartToShoot, driveShootToCollect1Pre, driveToCollect1, driveCollect1ToShoot;
 
